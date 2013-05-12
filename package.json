@@ -1,0 +1,22 @@
+{
+  "name": "typed-stream",
+  "version": "0.1.0",
+  "description": "dramatically simpler streams through specialization",
+  "keywords": [
+    "stream",
+    "streams",
+    "window"
+  ],
+  "author": "Jake Rosoman<jkroso@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jkroso/stream-spec.git"
+  },
+  "dependencies": {
+    "emitter": "http://github.com/jkroso/Emitter/archive/0.6.2.tar.gz"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "chai": "~1.6.0"
+  }
+}
