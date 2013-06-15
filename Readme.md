@@ -26,12 +26,5 @@ var BufferStream = require('typed-stream/buffer')
 ## Running the tests
 
 ```bash
-$ npm install
 $ make test
 ```
-
-_Note: these commands don't work on windows._ 
-
-## License 
-
-[MIT](License)
