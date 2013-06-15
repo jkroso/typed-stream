@@ -1,5 +1,6 @@
 
-var Stream = BufferStream
+var Stream = require('../../buffer')
+  , chai = require('../chai')
 
 var stream
 var dest

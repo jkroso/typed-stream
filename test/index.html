@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<title>typed-stream tests</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+<body>
+	<div id="mocha"></div>
+	<script>
+		var mocha = require('mocha')
+
+		mocha.setup('bdd')
+
+		// require('./buffer/pipe.test')
+		// require('./buffer/queue.test')
+		require('./object/pipe.test')
+		require('./object/queue.test')
+		require('./string/pipe.test')
+		require('./string/queue.test')
+
+		mocha.run(function(){
+			console.log('Done!')
+		})
+	</script>
+</body>
+</html>

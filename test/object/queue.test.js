@@ -1,5 +1,6 @@
 
-var Stream = ObjectStream
+var Stream = require('../../object')
+  , chai = require('../chai')
 
 var stream
 beforeEach(function () {

@@ -1,5 +1,6 @@
 
-var Stream = StringStream
+var Stream = require('../../string')
+  , chai = require('../chai')
 
 var stream
 var dest

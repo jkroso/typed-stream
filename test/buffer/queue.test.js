@@ -1,6 +1,6 @@
 
-var should = require('chai').should()
-  , Stream = BufferStream
+var Stream = require('../../buffer')
+  , chai = require('../chai')
 
 var stream
 beforeEach(function () {

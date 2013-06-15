@@ -13,7 +13,7 @@
     "url": "git://github.com/jkroso/stream-spec.git"
   },
   "dependencies": {
-    "emitter": "http://github.com/jkroso/Emitter/archive/0.6.2.tar.gz"
+    "emitter": "http://github.com/jkroso/Emitter/tarball/0.7.0"
   },
   "devDependencies": {
     "mocha": "~1.9.0",

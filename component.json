@@ -1,0 +1,23 @@
+{
+  "name": "typed-stream",
+  "repo": "jkroso/typed-stream",
+  "description": "dramatically simpler streams through specialization",
+  "version": "0.1.0",
+  "keywords": [
+    "stream",
+    "streams",
+    "window"
+  ],
+  "dependencies": {
+    "jkroso/emitter": "0.7.0"
+  },
+  "development": {
+    "visionmedia/mocha": "1.11.0",
+    "jkroso/serve": "1.3.0",
+    "chaijs/chai": "1.6.1"
+  },
+  "scripts": [
+    "index.js"
+  ],
+  "license": "MIT"
+}
