@@ -1,15 +1,22 @@
 
-var Emitter = require('emitter/light')
-  , pipeable = require('./pipeable')
+var Stream = require('./base')
+  , emitDrain = Stream.emitDrain
+  , emitReadable = Stream.emitReadable
+  , inherit = require('inherit')
+  , defer = require('next-tick')
   , concat = Buffer.concat
 
+module.exports = BufferStream
+
+inherit(BufferStream, Stream)
+
 /**
- * an Object stream
+ * a Buffer stream
  *
  * @param {Number} max
  */
 
-function Stream(max){
+function BufferStream(max){
 	this.q = []
 	this.length = 0
 	this.max = max || 100
@@ -22,7 +29,7 @@ function Stream(max){
  * @return {Boolean} is full
  */
 
-Stream.prototype.push = function(buf){
+BufferStream.prototype.push = function(buf){
 	this.q.push(buf)
 	this.length += buf.length
 	this.emit('readable')
@@ -37,8 +44,8 @@ Stream.prototype.push = function(buf){
  * @return {Buffer}
  */
 
-Stream.prototype.read = function(n){
-	if (!this.length) throw new Error('can\'t read an empty stream')
+BufferStream.prototype.read = function(n){
+	if (!this.length) throw new Error('can\'t read an empty BufferStream')
 	var q = this.q
 	// read all
 	if (n === undefined || n > this.length) {
@@ -79,33 +86,12 @@ Stream.prototype.read = function(n){
 	return concat(bufs, n)
 }
 
-function emitDrain(self){
-	setImmediate(function(){
-		self.emit('drain')
-	})
-}
-
-function emitReadable(self){
-	setImmediate(function(){
-		if (self.length) self.emit('readable')
-	})
-}
-
 /**
  * put a buffer back on the queue
  * @param {Buffer} buf
  */
 
-Stream.prototype.unread = function(buf){
+BufferStream.prototype.unread = function(buf){
 	this.q.unshift(buf)
 	this.length += buf.length
 }
-
-// inherit Emitter
-Stream.prototype.__proto__ = Emitter.prototype
-
-// mixin pipeable
-pipeable(Stream.prototype)
-
-// export the class
-module.exports = Stream

@@ -1,6 +1,13 @@
 
-var Emitter = require('emitter/light')
-  , pipeable = require('./pipeable')
+var Stream = require('./base')
+  , emitDrain = Stream.emitDrain
+  , emitReadable = Stream.emitReadable
+  , inherit = require('inherit')
+  , defer = require('next-tick')
+
+module.exports = ObjectStream
+
+inherit(ObjectStream, Stream)
 
 /**
  * an Object stream
@@ -8,7 +15,7 @@ var Emitter = require('emitter/light')
  * @param {Number} max
  */
 
-function Stream(max){
+function ObjectStream(max){
 	this.q = []
 	this.index = 0
 	this.length = 0
@@ -22,7 +29,7 @@ function Stream(max){
  * @return {Boolean} is full
  */
 
-Stream.prototype.push = function(item){
+ObjectStream.prototype.push = function(item){
 	this.q.push(item)
 	this.length++
 	this.emit('readable')
@@ -34,8 +41,8 @@ Stream.prototype.push = function(item){
  * @return {Object}
  */
 
-Stream.prototype.read = function(){
-	if (!this.length) throw new Error('can\'t read an empty stream')
+ObjectStream.prototype.read = function(){
+	if (!this.length) throw new Error('can\'t read an empty ObjectStream')
 	// tidy
 	if (this.index == 100) {
 		this.q = this.q.slice(100)
@@ -53,33 +60,12 @@ Stream.prototype.read = function(){
 	return value
 }
 
-function emitDrain(self){
-	setImmediate(function(){
-		self.emit('drain')
-	})
-}
-
-function emitReadable(self){
-	setImmediate(function(){
-		if (self.length) self.emit('readable')
-	})
-}
-
 /**
  * put an object back on the queue
  * @param {Object} item
  */
 
-Stream.prototype.unread = function(item){
+ObjectStream.prototype.unread = function(item){
 	this.q[--this.index] = item
 	this.length++
 }
-
-// inherit Emitter
-Stream.prototype.__proto__ = Emitter.prototype
-
-// mixin pipeable
-pipeable(Stream.prototype)
-
-// export the class
-module.exports = Stream

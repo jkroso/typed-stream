@@ -13,10 +13,8 @@
     "url": "git://github.com/jkroso/stream-spec.git"
   },
   "dependencies": {
-    "emitter": "http://github.com/jkroso/Emitter/tarball/0.7.0"
+    "emitter": "http://github.com/jkroso/Emitter/tarball/0.7.0",
+    "next-tick": "http://github.com/timoxley/next-tick/tarball/0.0.2"
   },
-  "devDependencies": {
-    "mocha": "~1.9.0",
-    "chai": "~1.6.0"
-  }
+  "devDependencies": {}
 }

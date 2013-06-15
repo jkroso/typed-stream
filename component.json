@@ -9,7 +9,9 @@
     "window"
   ],
   "dependencies": {
-    "jkroso/emitter": "0.7.0"
+    "jkroso/emitter": "0.7.0",
+    "timoxley/next-tick": "0.0.2",
+    "component/inherit": "0.0.2"
   },
   "development": {
     "visionmedia/mocha": "1.11.0",
